@@ -12,19 +12,22 @@ namespace WordUnscrambler
         {
             List<MatchedWord> matchedWords = new List<MatchedWord>();
 
-            foreach (var scrambledWord in scrambledWords)
-            {
-                foreach (var word in wordList)
-                {
-                    //scrambledWord already matches word
-                    if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase)) {
-                        matchedWords.Add(BuildMatchedWord(scrambledWord, word));
-                    }
-                    else
-                    {
-                    }
-                }
-            }
+
+            //NEED TO BE REDONE
+
+            //foreach (var scrambledWord in scrambledWords)
+            //{
+            //    foreach (var word in wordList)
+            //    {
+            //        //scrambledWord already matches word
+            //        if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase)) {
+            //            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+            //        }
+            //        else
+            //        {
+            //        }
+            //    }
+            //}
 
             MatchedWord BuildMatchedWord(string scrambledWord, string word)
             {
