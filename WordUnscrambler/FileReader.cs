@@ -17,10 +17,10 @@ namespace WordUnscrambler
         /// <returns>It return the content of the file</returns>
         public string[] Read(string filename)
         {
-            string[] scrabledWords;
+            string[] Content;
             try
             {
-                scrabledWords = File.ReadAllLines(filename);
+                Content = File.ReadAllLines(filename);
             }
             catch(FileNotFoundException ex)
             {
@@ -31,7 +31,7 @@ namespace WordUnscrambler
                 throw new Exception(ex.Message);
             }
 
-            return scrabledWords;
+            return Content;
 
         }
     }
