@@ -26,6 +26,14 @@ namespace WordUnscrambler
                     }
                     else
                     {
+                        char[] scramble = scrambledWord.ToArray<char>();
+                        char[] words = word.ToArray<char>();
+
+                        Array.Sort(scramble);
+                        Array.Sort(words);
+
+                        string sortedScramble = new string(scramble);
+                        string sortedWords = new string(words);
                     }
                 }
             }
