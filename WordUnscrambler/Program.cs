@@ -50,7 +50,6 @@ namespace WordUnscrambler
             var filename = Console.ReadLine();
             string[] scrambledWords = _fileReader.Read(filename);
             DisplayMatchedUnscrambledWords(scrambledWords);
-            
         }
 
         private static void ExecuteScrambledWordsManualEntryScenario()
@@ -60,10 +59,15 @@ namespace WordUnscrambler
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
             //read the list of words from the system file. 
-            string[] wordList = _fileReader.Read("wordlist.txt");
+            string[] wordList = _fileReader.Read(@"C:\Users\thoma\source\repos\WordUnscrambler\WordUnscrambler\bin\Debug\wordlist.txt");
 
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
+
+            foreach (var matchedWord in matchedWords)
+            {
+                Console.WriteLine("MATCH FOUND for " + matchedWord.ScrambledWord + " : "+  matchedWord.Word);
+            }
         }
     }
 }

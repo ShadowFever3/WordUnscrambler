@@ -34,7 +34,12 @@ namespace WordUnscrambler
 
                         string sortedScramble = new string(scramble);
                         string sortedWords = new string(words);
+                        if (sortedScramble.Equals(sortedWords, StringComparison.OrdinalIgnoreCase))
+                        {
+                            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        }
                     }
+                    
                 }
             }
 
