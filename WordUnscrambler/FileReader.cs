@@ -22,9 +22,9 @@ namespace WordUnscrambler
             {
                 Content = File.ReadAllLines(filename);
             }
-            catch(FileNotFoundException ex)
+            catch(FileNotFoundException)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("The file was not found.");
             }
             catch (Exception ex)
             {

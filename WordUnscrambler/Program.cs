@@ -40,7 +40,7 @@ namespace WordUnscrambler
             }
             catch (Exception ex)
             {
-                Console.WriteLine("The program will be terminated." + ex.Message);
+                Console.WriteLine("The program will be terminated. " + ex.Message);
 
             }
         }
