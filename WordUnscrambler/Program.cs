@@ -50,6 +50,7 @@ namespace WordUnscrambler
             var filename = Console.ReadLine();
             string[] scrambledWords = _fileReader.Read(filename);
             DisplayMatchedUnscrambledWords(scrambledWords);
+            
         }
 
         private static void ExecuteScrambledWordsManualEntryScenario()

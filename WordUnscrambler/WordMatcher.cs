@@ -15,19 +15,20 @@ namespace WordUnscrambler
 
             //NEED TO BE REDONE
 
-            //foreach (var scrambledWord in scrambledWords)
-            //{
-            //    foreach (var word in wordList)
-            //    {
-            //        //scrambledWord already matches word
-            //        if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase)) {
-            //            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
-            //        }
-            //        else
-            //        {
-            //        }
-            //    }
-            //}
+            foreach (var scrambledWord in scrambledWords)
+            {
+                foreach (var word in wordList)
+                {
+                    //scrambledWord already matches word
+                    if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    {
+                        matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                    }
+                    else
+                    {
+                    }
+                }
+            }
 
             MatchedWord BuildMatchedWord(string scrambledWord, string word)
             {
