@@ -10,36 +10,58 @@ namespace WordUnscrambler
     {
         private static readonly FileReader _fileReader = new FileReader();
         private static readonly WordMatcher _wordMatcher = new WordMatcher();
-        bool isvalid = false;
 
         static void Main(string[] args)
         {
-            while(!isvalid)
+            bool next = true;
+            while (next)
             {
-                Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
-
-                String option = Console.ReadLine() ?? throw new Exception("String is empty");
-
-                switch (option.ToUpper())
+                bool valid = false;
+                while (!valid)
                 {
-                    case "F":
-                        Console.WriteLine("Enter full path including the file name: ");
-                        isvalid = true;
-                        ExecuteScrambledWordsInFileScenario();
-                        break;
-                    case "M":
-                        Console.WriteLine("Enter word(s) manually (separated by commas if multiple): ");
-                        isvalid = true;
-                        ExecuteScrambledWordsManualEntryScenario();
-                        break;
-                    default:
-                        Console.WriteLine("The entered option was not recognized. Enter a valid option.");
-                        break;
+                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+
+                    String option = Console.ReadLine() ?? throw new Exception("String is empty");
+
+                    switch (option.ToUpper())
+                    {
+                        case "F":
+                            Console.WriteLine("Enter full path including the file name: ");
+                            valid = true;
+                            ExecuteScrambledWordsInFileScenario();
+                            break;
+                        case "M":
+                            Console.WriteLine("Enter word(s) manually (separated by commas if multiple): ");
+                            valid = true;
+                            ExecuteScrambledWordsManualEntryScenario();
+                            break;
+                        default:
+                            Console.WriteLine("The entered option was not recognized. Enter a valid option.");
+                            break;
+                    }
+
+                    //Console.ReadLine();
                 }
-
-                Console.ReadLine();
-
-
+                valid = false;
+                while (!valid)
+                {
+                    Console.WriteLine("Would you like to continue? Y/N");
+                    String option2 = Console.ReadLine() ?? throw new Exception("String is empty");
+                    switch (option2.ToUpper())
+                    {
+                        case "Y":
+                            next = true;
+                            valid = true;
+                            break;
+                        case "N":
+                            next = false;
+                            valid = true;
+                            break;
+                        default:
+                            Console.WriteLine("The entered option was not recognized. Enter a valid option.");
+                            break;
+                    }
+                }
             }
             /*
             catch (Exception ex)
@@ -58,19 +80,26 @@ namespace WordUnscrambler
 
         private static void ExecuteScrambledWordsManualEntryScenario()
         {
+            string scrambledWords = Console.ReadLine();
+            char[] separators = new char[] { ' ', ',' };
+            string[] scrambledList = scrambledWords.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+            DisplayMatchedUnscrambledWords(scrambledList);
         }
 
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
             //read the list of words from the system file. 
-            string[] wordList = _fileReader.Read("wordlist.txt");
+            //string[] wordList = _fileReader.Read("wordlist.txt");
+
+            //Use constants instead
+            string[] wordList = new string[] { Constants.s1, Constants.s2, Constants.s3, Constants.s4, Constants.s5, Constants.s6 };
 
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
 
             foreach (var matchedWord in matchedWords)
             {
-                Console.WriteLine("MATCH FOUND for " + matchedWord.ScrambledWord + " : "+  matchedWord.Word);
+                Console.WriteLine("MATCH FOUND for " + matchedWord.ScrambledWord + " : " + matchedWord.Word);
             }
         }
     }

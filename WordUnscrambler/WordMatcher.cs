@@ -10,6 +10,7 @@ namespace WordUnscrambler
     {
         public List<MatchedWord> Match(string[] scrambledWords, string[] wordList)
         {
+            bool matchFound = false;
             List<MatchedWord> matchedWords = new List<MatchedWord>();
 
 
@@ -23,11 +24,12 @@ namespace WordUnscrambler
                     if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase))
                     {
                         matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        matchFound = true;
                     }
-                    else
+                    else //other comparisons
                     {
-                        char[] scramble = scrambledWord.ToArray<char>();
-                        char[] words = word.ToArray<char>();
+                        char[] scramble = scrambledWord.ToArray();
+                        char[] words = word.ToArray();
 
                         Array.Sort(scramble);
                         Array.Sort(words);
@@ -37,10 +39,17 @@ namespace WordUnscrambler
                         if (sortedScramble.Equals(sortedWords, StringComparison.OrdinalIgnoreCase))
                         {
                             matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                            matchFound = true;
                         }
                     }
                     
                 }
+            }
+
+            //if no match was found, notify user
+            if (!matchFound)
+            {
+                Console.WriteLine("No match was found.");
             }
 
             MatchedWord BuildMatchedWord(string scrambledWord, string word)
