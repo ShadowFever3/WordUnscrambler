@@ -8,11 +8,13 @@ namespace WordUnscrambler
 {
     class Program
     {
+        //Define object to access different method
         private static readonly FileReader _fileReader = new FileReader();
         private static readonly WordMatcher _wordMatcher = new WordMatcher();
 
         static void Main(string[] args)
         {
+            //Bool for -> While loop
             bool next = true;
             while (next)
             {
